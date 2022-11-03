@@ -11,28 +11,24 @@
 	} from './store/preferences';
 
 	// make sure connected false when web3 store is empty
-	$: if (!$web3) {
+	if (!$web3) {
 		$connected = false;
 	}
 
 	const checkConnection = async () => {
 		$isLoading = true;
 		try {
-			try {
-				const _ = await $web3.eth.net.isListening();
-				$connected = true;
-			} catch (err) {
-				$connected = false;
-				console.error(err);
-			}
-		} finally {
-			$isLoading = false;
-			accountsChanged();
+			const _ = await $web3.eth.net.isListening();
+		} catch (err) {
+			console.error(err);
 		}
+		$isLoading = false;
+		accountsChanged();
 	};
 	const accountsChanged = async () => {
 		let accounts = await $web3.eth.getAccounts();
 		if (accounts.length) {
+			$connected = true;
 			$activeAddress = accounts[0];
 		} else {
 			$activeAddress = null;
