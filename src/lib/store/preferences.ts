@@ -1,9 +1,8 @@
-import { writable } from "svelte-local-storage-store";
 import { writable as writableTemp } from "svelte/store";
 import type Web3 from 'web3'
 
-export let connected = writable('web3.connected', false)
-export let activeAddress = writable<string | null>('web3.active_address', null)
+export let connected = writableTemp(false)
+export let activeAddress = writableTemp<string | null>(null)
 /**
  * Please make sure connection already connected
  */
