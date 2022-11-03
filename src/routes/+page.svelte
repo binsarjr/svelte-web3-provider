@@ -1,3 +1,19 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { connected, isLoading, web3 } from '$lib';
+	import { activeAddress, isEthereumBrowser } from '$lib/store/preferences';
+</script>
+
+<p>{$activeAddress || 'address tidak ditemukan'}</p>
+{#if $connected}
+	Connected wallet
+	<a href="/coba">coba halaman</a>
+{:else}
+	disconect wallet
+{/if}
+
+{#if $isLoading}
+	lagi loading
+{/if}
+{#if !isEthereumBrowser}
+	Tidak suprot ethereum
+{/if}
