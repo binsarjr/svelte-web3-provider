@@ -31,6 +31,14 @@
 		"web3": "^1.8.0",
 		"web3-core": "^1.8.0"
 	},
+	"keywords": [
+		"sveltekit",
+		"svelte",
+		"ethereum",
+		"metamask",
+		"web3",
+		"store"
+	],
 	"type": "module",
 	"peerDependencies": {
 		"web3": "^1.8.0"
