@@ -1,6 +1,6 @@
 {
 	"name": "svelte-web3-provider",
-	"version": "0.0.1-fix-uncovered-store",
+	"version": "0.0.1-better-readme",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -42,5 +42,10 @@
 	"type": "module",
 	"peerDependencies": {
 		"web3": "^1.8.0"
-	}
+	},
+	"repository": {
+		"url": "https://github.com/binsarjr/svelte-web3-provider"
+	},
+	"description": "Detects whether the user is using MetaMask or Ethereum wallet-enabled browser. If not, it will access the Ethereum network through a given Web3 fallback provider (e.g. INFURA node).",
+	"license": "MIT"
 }
