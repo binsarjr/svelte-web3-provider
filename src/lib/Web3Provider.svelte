@@ -26,11 +26,12 @@
 		$isLoading = true;
 		try {
 			const _ = await $web3.eth.net.isListening();
+			await accountsChanged();
 		} catch (err) {
 			console.error(err);
+		} finally {
+			$isLoading = false;
 		}
-		await accountsChanged();
-		$isLoading = false;
 	};
 	const accountsChanged = async () => {
 		let accounts = await $web3.eth.getAccounts();
