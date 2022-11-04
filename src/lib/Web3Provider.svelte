@@ -38,7 +38,7 @@
 			$connected = true;
 			$selectedAccount = accounts[0];
 		} else {
-			$selectedAccount = null;
+			$selectedAccount = '';
 			$connected = false;
 		}
 	};

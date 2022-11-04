@@ -1,19 +1,25 @@
 <script>
-	import { connected, isLoading, web3 } from '$lib';
-	import { selectedAccount, isSupportEthereum } from '$lib/store/preferences';
+	import { connected, isLoading, isSupportEthereum, selectedAccount, web3 } from '$lib';
+
+	let balance = '';
+	$: if ($web3) {
+		$web3.eth.getBalance($selectedAccount).then(value => {
+			balance=value
+		});
+	}
 </script>
 
-<p>{$selectedAccount || 'address tidak ditemukan'}</p>
+<p>{$selectedAccount || 'no address'}</p>
+<p>Balance: {balance}</p>
 {#if $connected}
 	Connected wallet
-	<a href="/coba">coba halaman</a>
 {:else}
-	disconect wallet
+	wallet not connected
 {/if}
 
 {#if $isLoading}
-	lagi loading
+	<p>Loading...</p>
 {/if}
-{#if !isSupportEthereum}
-	Tidak suprot ethereum
+{#if !$isSupportEthereum}
+	<p>not support ethereum network</p>
 {/if}
