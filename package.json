@@ -1,6 +1,6 @@
 {
 	"name": "svelte-web3-provider",
-	"version": "0.0.1-fallbackprovider",
+	"version": "0.0.1-setprovider",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
