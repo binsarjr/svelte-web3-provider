@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Web3 from 'web3';
+	import type { provider as Provider } from 'web3-core';
 
 	import { onMount } from 'svelte';
 	import {
@@ -9,6 +10,12 @@
 		isLoading,
 		web3
 	} from './store/preferences';
+
+	/**
+	 * Your Provider when metamask and window.web3 is empty(not ehtereum support) then
+	 * will use your custom provider
+	 */
+	export let provider: Provider;
 
 	// make sure connected false when web3 store is empty
 	if (!$web3) {
@@ -22,8 +29,8 @@
 		} catch (err) {
 			console.error(err);
 		}
+		await accountsChanged();
 		$isLoading = false;
-		accountsChanged();
 	};
 	const accountsChanged = async () => {
 		let accounts = await $web3.eth.getAccounts();
@@ -56,12 +63,18 @@
 			$web3 = new Web3(windowWeb3.currentProvider);
 			await checkConnection();
 		}
+		// custom provider
+		else if (provider) {
+			// Acccounts always exposed
+			$web3 = new Web3(provider);
+			await checkConnection();
+		}
 		// Non-dapp browsers...
 		else {
 			console.warn('Non-Ethereum browser detected. You should consider trying MetaMask!');
 			$connected = false;
-			$isLoading = false;
 			$isSupportEthereum = false;
 		}
+		$isLoading = false;
 	});
 </script>
