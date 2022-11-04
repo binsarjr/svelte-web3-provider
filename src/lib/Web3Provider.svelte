@@ -13,9 +13,9 @@
 
 	/**
 	 * Your Provider when metamask and window.web3 is empty(not ehtereum support) then
-	 * will use your custom provider
+	 * will use your fallback provider
 	 */
-	export let provider: Provider | null = null;
+	export let fallbackProvider: Provider | null = null;
 
 	// make sure connected false when web3 store is empty
 	if (!$web3) {
@@ -64,10 +64,10 @@
 			await checkConnection();
 		}
 		// custom provider
-		else if (provider) {
-			// // Acccounts always exposed
-			// $web3 = new Web3(provider);
-			// await checkConnection();
+		else if (fallbackProvider) {
+			// Acccounts always exposed
+			$web3 = new Web3(fallbackProvider);
+			await checkConnection();
 		}
 		// Non-dapp browsers...
 		else {

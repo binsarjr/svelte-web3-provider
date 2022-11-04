@@ -22,7 +22,7 @@ You must add `Web3Provider` to root layout and Web3Provider will detect if brows
 ```svelte
 <script>
     // routes/+layout.svelte
-	import Web3Provider from '$lib';
+	import Web3Provider from 'svelte-web3-provider';
     import net from 'net'
     import Web3 from 'web3'
 </script>
@@ -32,9 +32,9 @@ You must add `Web3Provider` to root layout and Web3Provider will detect if brows
 <Web3Provider />
 
 <!--  With Fallback Provider -->
-<Web3Provider provider="http://localhost:8545" />
-<Web3Provider provider={new Web3.providers.WebsocketProvider('ws://localhost:8546')} />
-<Web3Provider provider={new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net)} />
+<Web3Provider fallbackProvider="http://localhost:8545" />
+<Web3Provider fallbackProvider={new Web3.providers.WebsocketProvider('ws://localhost:8546')} />
+<Web3Provider fallbackProvider={new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net)} />
 
 
 <slot/>
