@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 import type Web3 from 'web3'
 
 export let connected = writable(false)
-export let selectedAccount = writable<string>()
+export let selectedAccount = writable<string | null>(null)
 /**
  * Please make sure connection already connected
  */

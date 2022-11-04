@@ -1,5 +1,5 @@
 <script>
-	import Web3Provider from '$lib/Web3Provider.svelte';
+	import Web3Provider from '$lib';
 </script>
 
 <Web3Provider />

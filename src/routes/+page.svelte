@@ -2,7 +2,7 @@
 	import { connected, isLoading, isSupportEthereum, selectedAccount, web3 } from '$lib';
 
 	let balance = '';
-	$: if ($web3) {
+	$: if ($web3 && $selectedAccount) {
 		$web3.eth.getBalance($selectedAccount).then(value => {
 			balance=value
 		});
