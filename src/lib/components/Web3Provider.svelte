@@ -3,47 +3,27 @@
 	import type { provider as Provider } from 'web3-core';
 
 	import { onMount } from 'svelte';
-	import {
-		selectedAccount,
-		connected,
-		isSupportEthereum,
-		isLoading,
-		web3
-	} from './store/preferences';
+	import { connected, isSupportEthereum, isLoading, web3 } from '../store/preferences';
+	import { accountsChanged, checkConnection } from '$lib/web3-utils';
 
 	/**
 	 * Your Provider when metamask and window.web3 is empty(not ehtereum support) then
 	 * will use your fallback provider
 	 */
 	export let fallbackProvider: Provider | null = null;
+	export let manual = false;
 
 	// make sure connected false when web3 store is empty
 	if (!$web3) {
 		$connected = false;
 	}
 
-	const checkConnection = async () => {
-		$isLoading = true;
-		try {
-			const _ = await $web3.eth.net.isListening();
-			await accountsChanged();
-		} catch (err) {
-			console.error(err);
-		} finally {
-			$isLoading = false;
-		}
-	};
-	const accountsChanged = async () => {
-		let accounts = await $web3.eth.getAccounts();
-		if (accounts.length) {
-			$connected = true;
-			$selectedAccount = accounts[0];
-		} else {
-			$selectedAccount = null;
-			$connected = false;
-		}
-	};
 	onMount(async () => {
+		if (manual) {
+			$isLoading = false;
+			console.warn('You use manual setup');
+			return;
+		}
 		// @ts-ignore
 		let ethereum = window.ethereum;
 		// @ts-ignore
