@@ -1,6 +1,6 @@
 {
 	"name": "svelte-web3-provider",
-	"version": "0.0.1",
+	"version": "0.0.1-fix-uncovered-store",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
