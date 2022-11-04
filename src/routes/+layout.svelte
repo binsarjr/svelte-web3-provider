@@ -1,8 +1,8 @@
 <script>
-	import Web3Provider from '$lib';
+	import { page } from '$app/stores';
 </script>
 
-<Web3Provider />
-<main>
-	<slot />
-</main>
+{#if $page.url.pathname !== '/'}
+	<a href="/">Back To Home</a>
+{/if}
+<slot />

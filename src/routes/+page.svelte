@@ -1,25 +1,8 @@
-<script>
-	import { connected, isLoading, isSupportEthereum, selectedAccount, web3 } from '$lib';
-
-	let balance = '';
-	$: if ($web3 && $selectedAccount) {
-		$web3.eth.getBalance($selectedAccount).then(value => {
-			balance=value
-		});
-	}
-</script>
-
-<p>{$selectedAccount || 'no address'}</p>
-<p>Balance: {balance}</p>
-{#if $connected}
-	Connected wallet
-{:else}
-	wallet not connected
-{/if}
-
-{#if $isLoading}
-	<p>Loading...</p>
-{/if}
-{#if !$isSupportEthereum}
-	<p>not support ethereum network</p>
-{/if}
+<h1>List Example</h1>
+<ul>
+	<li><a href="/auto">Auto Detect ethereum browser support</a></li>
+	<li>
+		<a href="/onthefly">Auto Detect ethereum browser support and switch provider on the fly</a>
+	</li>
+	<li><a href="/manual">Set provider manual</a></li>
+</ul>
