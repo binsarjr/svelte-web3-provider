@@ -1,9 +1,9 @@
 <script>
 	import { connected, isLoading, web3 } from '$lib';
-	import { activeAddress, isEthereumBrowser } from '$lib/store/preferences';
+	import { selectedAccount, isSupportEthereum } from '$lib/store/preferences';
 </script>
 
-<p>{$activeAddress || 'address tidak ditemukan'}</p>
+<p>{$selectedAccount || 'address tidak ditemukan'}</p>
 {#if $connected}
 	Connected wallet
 	<a href="/coba">coba halaman</a>
@@ -14,6 +14,6 @@
 {#if $isLoading}
 	lagi loading
 {/if}
-{#if !isEthereumBrowser}
+{#if !isSupportEthereum}
 	Tidak suprot ethereum
 {/if}

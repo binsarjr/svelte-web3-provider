@@ -3,9 +3,9 @@
 
 	import { onMount } from 'svelte';
 	import {
-		activeAddress,
+		selectedAccount,
 		connected,
-		isEthereumBrowser,
+		isSupportEthereum,
 		isLoading,
 		web3
 	} from './store/preferences';
@@ -29,9 +29,9 @@
 		let accounts = await $web3.eth.getAccounts();
 		if (accounts.length) {
 			$connected = true;
-			$activeAddress = accounts[0];
+			$selectedAccount = accounts[0];
 		} else {
-			$activeAddress = null;
+			$selectedAccount = null;
 			$connected = false;
 		}
 	};
@@ -61,7 +61,7 @@
 			console.warn('Non-Ethereum browser detected. You should consider trying MetaMask!');
 			$connected = false;
 			$isLoading = false;
-			$isEthereumBrowser = false;
+			$isSupportEthereum = false;
 		}
 	});
 </script>
